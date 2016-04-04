@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Distance Meter</title>
+    <style>
+        body {
+            background: lightgray;
+            font-family: Arial;
+            font-size: 18px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 3px 12px;
+        }
+
+        button#stopBtn {
+            display: none;
+        }
+
+        #container {
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        header {
+            background: black;
+            padding: 5px;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer {
+            background: black;
+            color: white;
+            padding: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <header>
+        <h1>Distance Meter App</h1>
+    </header>
+    <p>
+        <strong>Starting Position</strong>
+        <br>
+        <span id="startLat">Loading ...</span>
+        <span id="startLon">Loading ...</span>
+    </p>
+
+    <p>
+        <strong>Current Position</strong>
+        <br>
+        <span id="currentLat">Loading ...</span>
+        <span id="currentLon">Loading ...</span>
+    </p>
+
+    <p>
+        <strong>Distance</strong>
+        <br>
+        <span id="distance">0</span> Kilometers
+    </p>
+    <p>
+        <button id="startBtn" onclick="startTracking()">Start Tracking</button>
+        <button id="stopBtn" onclick="stopTracking()">Stop Tracking</button>
+    </p>
+    <footer>
+        <span>Copyright &copy; Udemy</span>
+    </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
