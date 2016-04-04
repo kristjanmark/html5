@@ -36,7 +36,7 @@ function Note() {
     }, 'false');
     note.appendChild(close);
 
-    var edit = createElement('div');
+    var edit = document.createElement('div');
     edit.className = 'edit';
     edit.setAttribute('contenteditable', false);
     edit.addEventListener('keyup', function () {
@@ -78,16 +78,16 @@ Note.prototype = {
     },
 
     get timestamp() {
-        if (!("_id" in this))
+        if (!("_timestamp" in this))
             this._timestap = 0;
         return this._timestap;
     },
 
     set timestamp(nt) {
-        if (this._timestap == nt) {
+        if (this._timestap == nt)
             return;
-        }
-        this._timestap(nt);
+
+        this._timestap = nt;
         var date = new Date();
         date.setTime(parseFloat(nt));
         this.lastModified.textContent = modifiedString(date);
@@ -258,7 +258,22 @@ function loadNotes(){
     });
 }
 
-function modifiedString() {
-    return "Sticky Last Modified: " + date.getFullYear() + " - " + (date.getMonth() + 1) + " - " + date.getHours() +":" + date.getMinutes() + ":" date.getSeconds();
+function modifiedString(date) {
+    return "Sticky Last Modified: " + date.getFullYear() + " - " + (date.getMonth() + 1) + " - " + date.getHours() +":" + date.getMinutes() + ":" + date.getSeconds()
+};
+
+function newNote() {
+    var note = new Note();
+    note.id = ++highestId;
+    note.timestamp = new Date().getTime();
+    note.left = Math.round(Math.random() * 400) + "px";
+    note.top = Math.round(Math.random() * 500) + "px";
+    note.zIndex = ++highestZ;
+    note.saveAsNew();
+}
+
+
+if(db != null) {
+    document.addEventListener("load", loaded, false);
 }
 
