@@ -8,7 +8,7 @@ $(document).ready(function () {
     if (localStorage.getItem('todos') != null) {
         //Loop through and output li items
         $.each(todoList, function (key, value) {
-            $('#todos').prepend('<li id="task-' + i + '"><a id="todo_link" href="#edit" data-todo_name = "' + value.todo_name + '" data-todo_date="' + value.todo_date + '">' + value.todo_name + '</a></li>');
+            $('#todos').prepend('<li id="task-' + i + '"><a id="todo_link" href="#edit" data-todo_name = "' + value.todo_name + '" data-todo_date="' + value.todo_date + '">' + value.todo_name + '<span>'+value.todo_date+'</span></a></li>');
             i++;
         });
         //Refresh
@@ -41,13 +41,68 @@ $(document).ready(function () {
         }
     });
 
-    $('#todos').on('click', "#todo_link", function(){
-        localStorage.setItem('currentTodoName',$(this).data('todo_name'));
-        localStorage.setItem('currentTodoDate',$(this).data('todo_date'));
+    //Edit Todo
+    $('#edit_form').submit(function () {
+        currentTodoName = localStorage.getItem('currentTodoName');
+        currentTodoDate = localStorage.getItem('currentTodoDate');
+        //Loop through todos
+        for (var i = 0; i < todoList.length; i++) {
+            if (todoList[i].todo_name == currentTodoName) {
+                todoList.splice(i, 1);
+            }
+            localStorage.setItem('todos', JSON.stringify(todoList));
+        }
+
+        //Create new todo
+        var todo_name_edit = $('#todo_name_edit').val();
+        var todo_date_edit = $('#todo_date_edit').val();
+
+        var todos = JSON.parse(localStorage.getItem('todos'));
+
+        //Create array with new values
+        var update_todo = {
+            "todo_name": todo_name_edit,
+            "todo_date": todo_date_edit
+        };
+
+        todos.push(update_todo);
+        localStorage.setItem('todos', JSON.stringify(todos));
+    });
+
+    //Delete Todo
+    $('#edit_form').on('click', '#delete', function () {
+        currentTodoName = localStorage.getItem('currentTodoName');
+        currentTodoDate = localStorage.getItem('currentTodoDate');
+        //Loop through todos
+        for (var i = 0; i < todoList.length; i++) {
+            if (todoList[i].todo_name == currentTodoName) {
+                todoList.splice(i, 1);
+            }
+            localStorage.setItem('todos', JSON.stringify(todoList));
+        }
+        $.mobile.changePage($('#home'), 'pop');
+    });
+
+
+    $('#todos').on('click', "#todo_link", function () {
+        localStorage.setItem('currentTodoName', $(this).data('todo_name'));
+        localStorage.setItem('currentTodoDate', $(this).data('todo_date'));
+    });
+
+    //Insert current data into edit form
+    $(document).on('pageshow', '#edit', function () {
+        currentTodoName = localStorage.getItem('currentTodoName');
+        currentTodoDate = localStorage.getItem('currentTodoDate');
+        $('#edit_form input[name=todo_name_edit]', this).val(currentTodoName);
+        $('#edit_form input[name=todo_date_edit]', this).val(currentTodoDate);
+    });
+
+    $(document).on('pageshow', '#home', function () {
+        window.location.reload();
     });
 
     //Clear Todos
-    $('#clear_btn').click(function(){
+    $('#clear_btn').click(function () {
         localStorage.clear();
     });
 });
