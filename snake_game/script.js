@@ -92,6 +92,9 @@ $(document).ready(function(){
 
         //Check Score
         checkscore(score);
+
+        //Display current score
+        $('#score').html('Game Score: '+score);
     }
 
     function paint_cell(x,y) {
@@ -109,6 +112,20 @@ $(document).ready(function(){
         return false;
     }
 
+    function checkscore(score) {
+        if(localStorage.getItem('highscore') == null) {
+            //if no highscore
+            localStorage.setItem('highscore', score);
+        } else {
+            //Highscore
+            if(score > localStorage.getItem('highscore')) {
+                localStorage.setItem('highscore', score);
+            }
+        }
+
+        $('#high_score').html('High Score: '+ localStorage.highscore);
+    }
+
     //Keyboard Controller
     $(document).keydown(function(e){
         var key = e.which;
@@ -119,3 +136,8 @@ $(document).ready(function(){
     });
 
 });
+
+function resetScore() {
+    localStorage.highscore = 0;
+    highscorediv = document.getElementById('#reset_score');
+}
