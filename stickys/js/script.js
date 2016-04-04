@@ -11,6 +11,10 @@ if (window.openDatabase) {
     alert("Error: Check HTML5 Web Storage in Browser");
 }
 
+var captured = null;
+var highestZ = 0;
+var highestId = 0;
+
 function Note() {
 
     var self = this;
@@ -157,8 +161,57 @@ Note.prototype = {
 
         var note = this;
         db.transaction(function(tn){
-            tn.executeSql("INSERT INTO MyStickys (id, note, timestamp, left, top, zindex)");
+            tn.executeSql("INSERT INTO MyStickys (id, note, timestamp, left, top, zindex) VALUES (?, ?, ?, ?, ?, ?)", [note.id, note.text, note.timestamp, note.left, note.top, note.zindex]);
         });
+    },
+
+    onMouseDown: function(e) {
+        capture = this;
+        this.startX = e.clientX - this.note.offsetLeft;
+        this.startY = e.clientY - this.note.offsetRight;
+        this.zIndex = ++highestZ;
+
+        var self = this;
+        if(!("mouseMoveHandler" in this)) {
+            this.mouseMoveHandler = function(e) {
+                return self.onMouseMove(e)
+            }
+            this.mouseUpHandler = function(e) {
+                return self.onMouseUp(e);
+            }
+        }
+
+        document.addEventListener("mousemove", this.mouseMoveHandler, true);
+        document.addEventListener("mouseup", this.mouseUpHandler, true);
+
+    },
+
+    onMouseMove: function(e) {
+        if(this != captured) {
+            return true;
+        }
+        this.left = e.clientX - this.startX + 'px';
+        this.top = e.clientY - this.startY + 'px';
+        return false;
+    },
+
+    onMouseUp: function(e) {
+        document.removeEventListener("mousemove", this.mouseOverHandler, true);
+        document.removeEventListener("mouseup", this.mouseUpHandler, true);
+
+
+        this.save();
+        return false;
+    },
+
+    onNoteClick: function(e) {
+        this.editField.focus();
+        getSelection().collapseToEnd();
+    },
+
+    onKeyUp: function() {
+        this.dirty = true;
+        this.saveSoon();
     }
 
 }
