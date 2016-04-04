@@ -7,6 +7,7 @@
     <style>
         canvas {
             border: 1px solid black;
+            background-color: lightgray;
         }
     </style>
     <script>
@@ -18,8 +19,33 @@
             draw();
         }
         function draw() {
+            //Pink Square
             ctx.fillStyle="pink";
             ctx.fillRect(30,30,50,50);     //Position and height width
+            ctx.strokeStyle="black";
+            ctx.lineWidth="3";
+            ctx.strokeRect(30,30,50,50);
+            //Black Square
+            ctx.fillStyle="black";
+            ctx.fillRect(40,40,50,50);
+            //Draw Text
+            ctx.font='30pt Arial';
+            // Create Gradient
+            var gradient = ctx.createLinearGradient(0,0, c.width,0);
+            gradient.addColorStop("0","red");
+            gradient.addColorStop("1","black");
+            //Fill text with gradient
+            ctx.fillStyle = gradient;
+            ctx.fillText("Company",100,80);
+            //Text Line
+            ctx.strokeStyle = "black";
+            ctx.fillStyle = "red";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(90,89);
+            ctx.lineTo(350,89);
+            ctx.stroke();
+            ctx.closePath();
         }
     </script>
 </head>
