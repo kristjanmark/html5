@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 Canvas Animation</title>
+
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+
+
+    <script>
+        var c;
+        var ctx;
+        function init() {
+            c = document.getElementById("myCanvas");
+            ctx = c.getContext("2d");
+            draw();
+        }
+        function draw() {
+            var pos0 = 0;
+            var pos1 = 0;
+            setInterval(function () {
+                pos0 += 1;
+                pos1 += 1;
+                ctx.fillStyle="black";
+                ctx.fillRect(0,0, c.width, c.height);
+                ctx.fillStyle="white";
+                ctx.beginPath();
+                ctx.arc(pos0,120,55,0,Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle="pink";
+                ctx.beginPath();
+                ctx.arc(150,pos1,78,0,Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle="gray";
+                ctx.beginPath();
+                ctx.arc(450,pos1,40,0,Math.PI * 2);
+                ctx.fill();
+            },30);
+        }
+    </script>
+</head>
+<body onload="init()">
+<canvas id="myCanvas" width="600" height="400">
+
+</canvas>
+</body>
+</html>
