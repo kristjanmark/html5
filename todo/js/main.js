@@ -40,4 +40,14 @@ $(document).ready(function () {
             localStorage.setItem('todos', JSON.stringify(todos));
         }
     });
+
+    $('#todos').on('click', "#todo_link", function(){
+        localStorage.setItem('currentTodoName',$(this).data('todo_name'));
+        localStorage.setItem('currentTodoDate',$(this).data('todo_date'));
+    });
+
+    //Clear Todos
+    $('#clear_btn').click(function(){
+        localStorage.clear();
+    });
 });
