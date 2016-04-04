@@ -28,15 +28,52 @@ $(function () {
             }
         },
 
-        beforeEach: function(file) {
-            if(!file.type.match(^/image\//)){
+        beforeEach: function (file) {
+            if (!file.type.match(/image\//))
+            {
                 alert('File is not image');
                 return false;
             }
         },
 
-        uploadStart: function(i, file, len){
+        uploadStart: function (i, file, len) {
+            createImage(file);
+        },
 
+        progressUpdated: function (i, file, progress) {
+            $.data(file).find('.progress').width(progress);
         }
     });
+
+    var template = '<div class="preview">' +
+        '<span class="imageHolder">' +
+        '<img />' +
+        '</span>' +
+        '<div class="progressHolder">' +
+        '<div class="progress"></div>' +
+        '</div>' +
+        '</div>';
+    function createImage(file) {
+        var preview = $(template),
+            image = $('img', preview);
+        var reader = new FileReader();
+
+        image.width = 100;
+        image.height = 100;
+
+        reader.onload = function(e) {
+            image.attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(file);
+
+        back.hide();
+        preview.appendTo(picbox);
+
+        $.data(file, preview);
+    }
+
+    function showMessage(msg) {
+        back.html(msg);
+    }
 });
