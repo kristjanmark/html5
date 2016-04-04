@@ -1,0 +1,45 @@
+body {
+    font-family: Arial;
+    font-size: 15px;
+    line-height: 1.6;
+    background: lightgray;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    width: 70%;
+    margin: 20px auto;
+    overflow: auto;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+header {
+    background: pink;
+    color: white;
+    padding: 5px 10px;
+    overflow: auto;
+    font-size: 16px;
+}
+
+footer {
+    background: pink;
+    color: white;
+    padding: 5px 10px;
+    overflow: auto;
+}
+
+@media only screen and (max-width: 900px) {
+    .container {
+        width: 90%;
+    }
+}
