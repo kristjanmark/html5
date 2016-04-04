@@ -51,105 +51,37 @@ textarea {
     padding: 0.2em 0;
 }
 
+
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
-body {
-    font-family: Arial;
-    font-size: 14px;
-    background: #CCCCCC;
-}
 
-ul {
-    padding: 0;
-    margin: 0;
-}
 
-#container {
-    width: 85%;
-    margin: 10px auto;
-    overflow: auto;
-    background: white;
-}
 
-header#main {
-    padding: 10px;
-    background: #c0c0c0;
-}
 
-nav {
-    height: 40px;
-    background: #D6BFC9;
-    overflow: hidden;
-}
 
-nav li {
-    float: left;
-    padding: 10px 10px 0px 10px;
-    list-style-type: none;
-}
 
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
 
-nav a:hover {
-    color: pink;
-}
 
-main {
-    padding: 20px;
-}
 
-section#main {
-    position: relative;
-    width: 70%;
-    float: left;
-}
 
-aside {
-    width: 20%;
-    float: right;
-}
 
-footer {
-    padding: 20px;
-    text-align: center;
-}
 
-#holder {
-    position: absolute;
-    top: 10px;
-    left: 350px;
-    font-size: 35px;
-    width: 260px;
-}
+
 
 /* ==========================================================================
    Media Queries
    ========================================================================== */
 
-@media only screen and (max-width: 600px) {
-    section#main {
-        width: 100%;
-        float: none;
-        text-align: center;
-    }
+@media only screen and (min-width: 35em) {
 
-    aside {
-        width: 100%;
-        float: none;
-        text-align: center;
-    }
 }
 
 @media print,
-(-o-min-device-pixel-ratio: 5/4),
-(-webkit-min-device-pixel-ratio: 1.25),
-(min-resolution: 120dpi) {
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
 
 }
 
