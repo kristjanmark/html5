@@ -95,7 +95,6 @@ button#pause {
     background: url(../img/pause.png);
     float: left;
     margin-left: -2px;
-    display: none;
 }
 
 button#stop {
@@ -124,6 +123,7 @@ button#next {
 
 #tracker {
     position: relative;
+    width: 100%;
 }
 
 #progress-bar {
@@ -133,12 +133,14 @@ button#next {
     margin-top: 10px;
     height: 10px;
     background: url(../img/progress_bg.png) no-repeat;
+    float: left;
 }
 
-#progess {
+#progress {
     background: url(../img/progress.png) no-repeat;
     height: 10px;
     display: inline-block;
+    position: absolute;
 }
 
 #duration{
