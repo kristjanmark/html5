@@ -1,7 +1,28 @@
-var audio = new Audio('media/Linkin Park - By Myself.mp3');
-
+var audio;
 //Hide Button
 $('#pause').hide();
+
+initAudio('#playist li:first-child');
+
+function initAudio(element) {
+    var song = element.attr('song');
+    var title = element.text();
+    var cover = element.attr('cover');
+    var artist = element.attr('artist');
+
+    //Create Audio
+    audio = new Audio('media/'+ song);
+
+    //Audio info append to div
+    $('.artist').text(artist);
+    $('.title').text(title);
+
+    //Song cover
+    $('img.cover').attr('src','images/covers/'+cover);
+
+    $('#playlist li').removeClass('active');
+    element.addClass('active');
+}
 
 //Player
 $('#play').click(function(){
