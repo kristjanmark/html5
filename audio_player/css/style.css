@@ -1,0 +1,74 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+}
+
+
+body {
+    font-family: Arial;
+    font-size: 14px;
+    line-height: 1.5em;
+    color: white;
+    background: rgba(92,19,71,1);
+    background: -moz-linear-gradient(left, rgba(92,19,71,1) 0%, rgba(163,163,163,1) 98%, rgba(163,163,163,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(92,19,71,1)), color-stop(98%, rgba(163,163,163,1)), color-stop(100%, rgba(163,163,163,1)));
+    background: -webkit-linear-gradient(left, rgba(92,19,71,1) 0%, rgba(163,163,163,1) 98%, rgba(163,163,163,1) 100%);
+    background: -o-linear-gradient(left, rgba(92,19,71,1) 0%, rgba(163,163,163,1) 98%, rgba(163,163,163,1) 100%);
+    background: -ms-linear-gradient(left, rgba(92,19,71,1) 0%, rgba(163,163,163,1) 98%, rgba(163,163,163,1) 100%);
+    background: linear-gradient(to right, rgba(92,19,71,1) 0%, rgba(163,163,163,1) 98%, rgba(163,163,163,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5c1347', endColorstr='#a3a3a3', GradientType=1 );
+}
+
+
+.clearfix {
+    clear: both;
+}
+
+#container {
+    width: 330px;
+    min-height: 400px;
+    background: gray;
+    overflow: auto;
+    margin: 20px auto;
+    border-radius: 1px;
+    box-shadow: 0 10px 10px -1px darkgrey;
+}
+
+
+#audio-image {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    margin-bottom: 50px;
+
+}
+
+#audio-image .cover {
+    width: 100%;
+}
+
+#audio-info {
+    text-align: center;
+}
+
+#audio-info .artist {
+    font-weight: bold;
+}
+
+input#volume {
+    width: 95%;
+    margin-left: 2%;
+    -webkit-appearance: none !important;
+    background: lightgray;
+    height: 1px;
+    margin-bottom: 20px;
+}
+
+input#volume::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background: url(../img/knob.png) no-repeat;
+    height: 12px;
+    width: 12px;
+}
