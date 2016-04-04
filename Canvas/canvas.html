@@ -11,13 +11,16 @@
         }
     </style>
     <script>
+
         var c
         var ctx;
+
         function init() {
             c = document.getElementById('myCanvas');
             ctx = c.getContext('2d');
             draw();
         }
+
         function draw() {
             //Pink Square
             ctx.fillStyle="pink";
@@ -25,18 +28,24 @@
             ctx.strokeStyle="black";
             ctx.lineWidth="3";
             ctx.strokeRect(30,30,50,50);
+
+
             //Black Square
             ctx.fillStyle="black";
             ctx.fillRect(40,40,50,50);
+
+
             //Draw Text
             ctx.font='30pt Arial';
             // Create Gradient
             var gradient = ctx.createLinearGradient(0,0, c.width,0);
             gradient.addColorStop("0","red");
             gradient.addColorStop("1","black");
+
             //Fill text with gradient
             ctx.fillStyle = gradient;
             ctx.fillText("Company",100,80);
+
             //Text Line
             ctx.strokeStyle = "black";
             ctx.fillStyle = "red";
@@ -47,6 +56,8 @@
             ctx.stroke();
             ctx.closePath();
         }
+
+
     </script>
 </head>
 <body onload="init()">
