@@ -65,6 +65,10 @@ header h1 {
     display: none;
 }
 
+#picbox .preview . done .uploaded {
+    display: block;
+}
+
 #picbox .progressHolder {
     position: absolute;
     background: #252f38;
@@ -78,9 +82,9 @@ header h1 {
 #picbox .progress {
     background: #2586d0;
     position: absolute;
-    width: 100%;
+    width: 0;
+    height: 100%;
     left: 0;
-    bottom: 0;
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.4) inset;
     -moz-transition: 0.25s;
     -webkit-transition: 0.25s;
@@ -88,6 +92,6 @@ header h1 {
     transition: 0.25s;
 }
 
-#picbox .preview .done .progress {
+#picbox .preview.done .progress {
     width: 100% !important;
 }
